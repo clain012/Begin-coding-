@@ -1,0 +1,5 @@
+x ="love"
+counter=1
+while counter<10:
+    print("You are no.",counter,x)
+    counter+=0
