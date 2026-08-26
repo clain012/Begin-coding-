@@ -1,0 +1,10 @@
+def onboard_passengers(bookings):
+    name="gentle men"
+    counter =2
+    while counter <= bookings:
+        print(f"Passenger {counter} on board,",name)
+        counter +=2
+        
+        print(f"Passenger{counter} on board,","lady")
+
+onboard_passengers(101)

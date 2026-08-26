@@ -18,16 +18,19 @@ if unit == "K":
 elif unit == "F":
     converter = Temperature*1.8 +32
     print ("Temperature in Fahrenheit: " ,converter)
-
-while True:
+attempts =0
+while attempts < 1:
     Health_side = input("Would you like to continue to the health side of that temperature,'Yes' or 'No'? ").lower()
     if Health_side in ("yes",):
         break
     print ("please agree solely: ")
+    attempts += 1
 
 temp1 = Temperature
-if temp1 < 35:
-    print("Health wise: Hypothermia - seek care")
+if Health_side == "no":
+    print (f"Alright ,{Temperature} in {unit} is {converter}")
+elif temp1 < 35:
+    print("Health wise:Hyporthemia-seek medical advice")
 elif 35 <= temp1 < 36.1:
     print("Health wise: Slightly low")
 elif 36.1 <= temp1 <= 37.2:
