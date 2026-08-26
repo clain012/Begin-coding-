@@ -23,21 +23,21 @@ while True:
     Health_side = input("Would you like to continue to the health side of that temperature,'Yes' or 'No'? ").lower()
     if Health_side in ("yes",):
         break
-    print ("please agree")
+    print ("please agree solely: ")
 
 temp1 = Temperature
 if temp1 < 35:
-    print("Patient 1: Hypothermia - seek care")
+    print("Health wise: Hypothermia - seek care")
 elif 35 <= temp1 < 36.1:
-    print("Patient 1: Slightly low")
+    print("Health wise: Slightly low")
 elif 36.1 <= temp1 <= 37.2:
-    print("Patient 1: Normal")
+    print("Health wise: Normal")
 elif 37.2 < temp1 < 38:
-    print("Patient 1: Slightly elevated")
+    print("Health wise: Slightly elevated")
 elif 38 <= temp1 < 39:
-    print("Patient 1: Low-grade fever")
+    print("Health wise: Low-grade fever")
 elif 39 <= temp1 < 40:
-    print("Patient 1: High fever")
+    print("Health wise: High fever")
 else:
-    print("Patient 1: Very high - seek medical care")
+    print("Health wise: Very high - seek medical care")
 
