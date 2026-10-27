@@ -1,46 +1,71 @@
-while True:
+import tkinter as tk
+from tkinter import messagebox
+
+BG = "#1e1e2e"
+FG = "white"
+
+
+def convert():
     try:
-        Temperature = float(input("Your temperature? "))
-        break
+        temperature = float(entry.get())
     except ValueError:
-        print ("Enter a number ...? ")
-print ("Now: ",Temperature )
+        messagebox.showerror("Error", "Enter degrees in figures")
+        return
 
-while True:
-    unit = input("To Kelvin(K) or Fahrenheit(F)? ").upper()
-    if unit in ("K","F"):
-        break
-    print ("Either enter K or F: ")
+    if unit.get() == "K":
+        converted = temperature + 273.15
+        text = f"Temperature in Kelvin: {converted:.2f}"
+    else:
+        converted = temperature * 1.8 + 32
+        text = f"Temperature in Fahrenheit: {converted:.2f}"
 
-if unit == "K":
-    converter = Temperature + 273.15
-    print ("Temperature in Kelvin: ",converter)
-elif unit == "F":
-    converter = Temperature*1.8 +32
-    print ("Temperature in Fahrenheit: " ,converter)
-attempts =0
-while attempts < 1:
-    Health_side = input("Would you like to continue to the health side of that temperature,'Yes' or 'No'? ").lower()
-    if Health_side in ("yes",):
-        break
-    print ("please agree solely: ")
-    attempts += 1
+    if health.get():
+        if temperature < 35:
+            text += "\nHealth wise: Hypothermia - seek medical advice 🙄🙄"
+        elif temperature < 36.1:
+            text += "\nHealth wise: Slightly low"
+        elif temperature <= 37.2:
+            text += "\nHealth wise: Normal"
+        elif temperature < 38:
+            text += "\nHealth wise: Slightly elevated"
+        elif temperature < 39:
+            text += "\nHealth wise: Low-grade fever"
+        else:
+            text += "\nHealth wise: High fever - seek medical advice"
 
-temp1 = Temperature
-if Health_side == "no":
-    print (f"Alright ,{Temperature} in {unit} is {converter}")
-elif temp1 < 35:
-    print("Health wise:Hyporthemia-seek medical advice")
-elif 35 <= temp1 < 36.1:
-    print("Health wise: Slightly low")
-elif 36.1 <= temp1 <= 37.2:
-    print("Health wise: Normal")
-elif 37.2 < temp1 < 38:
-    print("Health wise: Slightly elevated")
-elif 38 <= temp1 < 39:
-    print("Health wise: Low-grade fever")
-elif 39 <= temp1 < 40:
-    print("Health wise: High fever")
-else:
-    print("Health wise: Very high - seek medical care")
+    if temperature >= 38:
+        result.config(text=text, fg="yellow")
+    else:
+        result.config(text=text, fg="lightgreen")
 
+
+root = tk.Tk()
+root.title("Temperature Converter")
+root.geometry("350x350")
+root.configure(bg=BG)
+
+tk.Label(root, text="Your temperature in Celsius:", bg=BG, fg=FG).pack(pady=(15, 5))
+entry = tk.Entry(root)
+entry.pack()
+
+unit = tk.StringVar(value="K")
+tk.Radiobutton(root, text="Kelvin (K)", variable=unit, value="K",
+               bg=BG, fg=FG, selectcolor="#444444",
+               activebackground=BG, activeforeground=FG).pack()
+tk.Radiobutton(root, text="Fahrenheit (F)", variable=unit, value="F",
+               bg=BG, fg=FG, selectcolor="#444444",
+               activebackground=BG, activeforeground=FG).pack()
+
+health = tk.BooleanVar()
+tk.Checkbutton(root, text="Show health side", variable=health,
+               bg=BG, fg=FG, selectcolor="#444444",
+               activebackground=BG, activeforeground=FG).pack(pady=5)
+
+tk.Button(root, text="Convert", command=convert,
+          bg="green", fg="white", activebackground="darkgreen",
+          activeforeground="white").pack(pady=10)
+
+result = tk.Label(root, text="", justify="left", bg=BG, fg="lightgreen")
+result.pack()
+
+root.mainloop()

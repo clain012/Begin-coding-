@@ -1,10 +1,12 @@
 def onboard_passengers(bookings):
-    name="gentle men"
-    counter =2
-    while counter <= bookings:
+    name ="gentle man"
+    counter =1
+    while counter <= bookings :
         print(f"Passenger {counter} on board,",name)
-        counter +=2
-        if counter==71:
-            print(f"Passenger{counter} on board,","lady")
+        counter +=1
 
-onboard_passengers(101)
+onboard_passengers(50)
+
+for x in range(50,101):
+    name ="lady"
+    print(f'Passenger {x} on board,its a {name}')

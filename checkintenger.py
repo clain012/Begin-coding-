@@ -1,7 +1,7 @@
 def check_number(number):
     if number>0:
        print("the number is positive")
-    elif number<0:
+    elif 0 > number:
        print("the number is negative")
     else:
        print("nuetral number")
